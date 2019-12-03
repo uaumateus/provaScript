@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Prova Script</title>
+	<meta http-equiv=”Content-Type” content=”text/html; charset=utf-8″>
+	<style>
+		body {margin: 0; background-color: #cedae0; display: flex; height: 100vh; justify-content: center; align-items: center; text-align: center;}
+		textarea {	width: 40vw; 
+					height: 30vh; 
+					background-color: #fff;
+					border-radius: 10px;
+					outline: none;
+					border: 1px solid #B1B1B1;
+					padding: 16px;
+					}
+	</style>
+	<script>
+		function exec(){
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/exec", true);
+			xhttp.setRequestHeader('Content-type', 'text/html');
+
+			var param = document.getElementById('postFunc').value;
+
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					window.location.href = "http://localhost:5000/resp";
+				}
+			};
+
+			xhttp.send(param);
+		}
+	</script>
+</head>
+<body>
+	<form>
+		<p>Digite a funcao desejada</p>
+		<textarea id="postFunc"></textarea><br/>
+		<button onclick="exec()">Enviar</button>
+	</form>
+</body>
+</html>
